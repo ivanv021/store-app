@@ -1,6 +1,9 @@
 <template>
   <div>
 
+     <ul>
+      <li v-for="(customer, index) in customers" :key="index">{{ customer.fullName }} <button @click='remove(customer)'>Remove</button></li>
+    </ul>
    
 
   </div>
@@ -11,13 +14,26 @@ import { customerService } from '../services/CustomerService'
 export default {
   data () {
     return {
-      customers: customerService.list()
+      customers: customerService.list(),
+      
+      
     }
+
   },
 
-  created () {
-    
+  methods: {
+
+      remove(customer){
+
+        customerService.remove(customer);
+
+      } 
+
+
   }
+
+    
+
 }
 </script>
 
